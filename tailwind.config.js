@@ -1,3 +1,7 @@
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -10,6 +14,26 @@ module.exports = {
     container: {
       center: true,
       padding: "1rem",
+    },
+    animation: {
+      aurora: "aurora 60s linear infinite",
+      scroll:
+        "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+    },
+    keyframes: {
+      aurora: {
+        from: {
+          backgroundPosition: "50% 50%, 50% 50%",
+        },
+        to: {
+          backgroundPosition: "350% 50%, 350% 50%",
+        },
+      },
+      scroll: {
+        to: {
+          transform: "translate(calc(-50% - 0.5rem))",
+        },
+      },
     },
 
     screens: {
@@ -31,6 +55,7 @@ module.exports = {
       "2xl": "1400px",
       // => @media (min-width: 1400px) { ... }
     },
+
     extend: {
       colors: {
         current: "currentColor",
@@ -68,5 +93,15 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [addVariablesForColors],
 };
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}

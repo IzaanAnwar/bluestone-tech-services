@@ -1,22 +1,24 @@
 import { Brand } from "@/types/brand";
 import Image from "next/image";
 import brandsData from "./brandsData";
+import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
 
 const Brands = () => {
   return (
-    <section className="pt-16">
-      <div className="container">
-        <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4">
-            <div
-              className="wow fadeInUp flex flex-wrap items-center justify-center rounded-sm bg-gray-light px-8 py-8 dark:bg-gray-dark sm:px-10 md:px-[50px] md:py-[40px] xl:p-[50px] 2xl:px-[70px] 2xl:py-[60px]"
-              data-wow-delay=".1s"
-            >
-              {/* {brandsData.map((brand) => (
-                <SingleBrand key={brand.id} brand={brand} />
-              ))} */}
-              Our Partners Coming Soon
-            </div>
+    <section className="max-w-screen overflow-hidden pt-16">
+      <div className="-mx-4 flex flex-wrap">
+        <div className="w-full px-4">
+          <div
+            className="wow fadeInUp flex max-w-full flex-wrap items-center justify-center overflow-hidden rounded-sm bg-gray-light/10 px-8 py-8 dark:bg-gray-dark/10 sm:px-10 md:px-[50px] md:py-[40px] xl:p-[50px] 2xl:px-[70px] 2xl:py-[60px]"
+            data-wow-delay=".1s"
+          >
+            <InfiniteMovingCards
+              items={brandsData}
+              direction="right"
+              speed="normal"
+            />
+
+            {/* Our Partners Coming Soon */}
           </div>
         </div>
       </div>

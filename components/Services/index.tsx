@@ -1,6 +1,6 @@
 import SectionTitle from "../Common/SectionTitle";
-import SingleFeature from "./SingleFeature";
-import featuresData from "./featuresData";
+import { HoverEffect } from "../ui/card-hover-effect";
+import featuresData from "./servicesData";
 
 const Features = () => {
   return (
@@ -13,11 +13,7 @@ const Features = () => {
             center
           />
 
-          <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-            {featuresData.map((feature) => (
-              <SingleFeature key={feature.id} feature={feature} />
-            ))}
-          </div>
+          <HoverEffect items={featuresData} />
         </div>
       </section>
     </>

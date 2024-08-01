@@ -395,8 +395,8 @@ function GlobeTab() {
   ];
 
   return (
-    <div className="relative my-auto flex h-screen w-full flex-row items-center justify-start  bg-white py-8 dark:bg-black md:h-auto">
-      <div className="relative mx-auto h-full w-full max-w-7xl overflow-hidden px-4 md:h-[40rem]">
+    <div className="relative my-auto flex h-[50vh] w-full flex-row items-center justify-start  bg-white  py-8 dark:bg-black md:h-screen">
+      <div className="relative mx-auto h-full w-full max-w-full overflow-hidden  px-4 ">
         <motion.div
           initial={{
             opacity: 0,
@@ -412,7 +412,7 @@ function GlobeTab() {
           className="div"
         ></motion.div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-40 w-full select-none bg-gradient-to-b from-transparent to-white dark:to-black" />
-        <div className="absolute -bottom-20 z-10 h-72 w-full md:h-full">
+        <div className="absolute  z-10  h-full w-full  md:h-full">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
@@ -424,37 +424,37 @@ const AboutSectionTwo = () => {
   return (
     <section className="py-16 md:py-20 lg:py-28">
       <div className="container">
-        <div className="-mx-4 flex flex-wrap items-center">
-          <div className="w-full px-4 lg:w-1/2">
+        <div className="-mx-4 flex flex-wrap items-center ">
+          <div className=" w-full  px-4 lg:w-1/2">
             <GlobeTab />
           </div>
-          <div className="mt-auto h-fit w-full px-4 md:mb-8 lg:w-1/2">
+          <div className="h-fit w-full  px-4  lg:w-1/2">
             <div className="wow fadeInUp max-w-[470px]" data-wow-delay=".2s">
               <div className="mb-9">
                 <h3 className="mb-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-                  Bug free code
+                  Comprehensive IT Solutions
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  From cloud computing and cybersecurity to managed IT services,
+                  we provide end-to-end solutions tailored to your needs.
                 </p>
               </div>
               <div className="mb-9">
                 <h3 className="mb-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-                  Premier support
+                  Expert Support
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
+                  Our dedicated team offers premier support to ensure your IT
+                  infrastructure operates smoothly and efficiently.
                 </p>
               </div>
               <div className="mb-1">
                 <h3 className="mb-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-                  Next.js
+                  Innovative Solutions
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                  Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt
-                  consectetur adipiscing elit setim.
+                  Leveraging the latest technologies, we deliver innovative
+                  solutions to drive your business forward.
                 </p>
               </div>
             </div>

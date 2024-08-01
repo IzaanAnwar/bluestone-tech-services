@@ -1,11 +1,11 @@
 import SectionTitle from "../Common/SectionTitle";
 import { HoverEffect } from "../ui/card-hover-effect";
-import featuresData from "./servicesData";
+import servicesData from "./servicesData";
 
-const Features = () => {
+const Services = () => {
   return (
     <>
-      <section id="features" className="py-16 md:py-20 lg:py-28">
+      <section id="services" className="py-16 md:py-20 lg:py-28">
         <div className="container">
           <SectionTitle
             title="Our Services"
@@ -13,11 +13,11 @@ const Features = () => {
             center
           />
 
-          <HoverEffect items={featuresData} />
+          <HoverEffect items={servicesData} />
         </div>
       </section>
     </>
   );
 };
 
-export default Features;
+export default Services;

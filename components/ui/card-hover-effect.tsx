@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Feature } from "@/types/feature";
+import { Service } from "@/types/service";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
@@ -9,7 +9,7 @@ export const HoverEffect = ({
   items,
   className,
 }: {
-  items: Feature[];
+  items: Service[];
   className?: string;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -114,16 +114,3 @@ export const CardDescription = ({
     </p>
   );
 };
-
-{
-  /* <div className="w-full">
-  <div className="wow fadeInUp" data-wow-delay=".15s">
-    <h3 className="mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-      {title}
-    </h3>
-    <p className="pr-[10px] text-base font-medium leading-relaxed text-body-color">
-      {paragraph}
-    </p>
-  </div>
-</div>; */
-}

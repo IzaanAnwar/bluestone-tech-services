@@ -1,8 +1,5 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import servicesData from "@/components/Services/servicesData";
-import SingleService, {
-  ExpandableCardDemo,
-} from "@/components/Services/SingleService";
+import { ExpandableCardDemo } from "@/components/Services/SingleService";
 
 import { Metadata } from "next";
 

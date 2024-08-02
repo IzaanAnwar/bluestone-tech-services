@@ -67,7 +67,7 @@ export function ExpandableCardDemo() {
       </AnimatePresence>
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0  z-[100] grid w-full place-items-center">
+          <div className="fixed inset-0  z-[100] grid w-full place-items-center backdrop-blur">
             <motion.button
               key={`button-${active.title}-${id}`}
               layout
@@ -91,9 +91,9 @@ export function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className=" flex h-full w-full max-w-[70vw]  flex-col overflow-x-hidden overflow-y-scroll  bg-white p-4 dark:bg-neutral-900 sm:rounded-md md:h-fit md:max-h-[80%]"
+              className=" no-visible-scrollbar mt-8 flex h-full max-h-[60%] w-full max-w-[90vw] flex-col  overflow-x-hidden rounded-xl   border bg-white p-4 dark:border-dark dark:bg-black sm:rounded-md md:h-fit md:max-h-[80%] md:max-w-[70vw]"
             >
-              <div>
+              <div className=" overflow-y-scroll py-2">
                 <div className="p-4">
                   <motion.div
                     layoutId={`image-${active.title}-${id}`}
@@ -114,13 +114,13 @@ export function ExpandableCardDemo() {
                     >
                       {active.paragraph}
                     </motion.p>
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-14 py-16 max-xl:grid-cols-3 md:grid-cols-2 md:py-20 lg:py-28">
+                    <div className="grid grid-cols-1 gap-x-8 gap-y-14 py-16  md:grid-cols-2 md:py-20 lg:py-28">
                       {active.subServices.map((subService) => (
                         <motion.div
                           key={subService.id}
                           layoutId={`card-${subService.title}-${subService.id}`}
                           ref={ref}
-                          className="flex h-full w-full max-w-[500px] flex-col overflow-hidden border  bg-white p-4 dark:bg-neutral-900 sm:rounded-md md:h-fit md:max-h-[90%]"
+                          className="flex h-full w-full max-w-[500px] flex-col overflow-hidden rounded-md border  bg-white p-4 dark:bg-black sm:rounded-md md:h-fit md:max-h-[90%]"
                         >
                           <motion.div
                             layoutId={`image-${subService.title}-${subService.id}`}
@@ -157,13 +157,13 @@ export function ExpandableCardDemo() {
           </div>
         ) : null}
       </AnimatePresence>
-      <div className="grid grid-cols-1 gap-x-8 gap-y-14 py-16 md:grid-cols-2 md:py-20 lg:grid-cols-3 lg:py-28">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-14 py-16 dark:bg-black md:grid-cols-2 md:py-20 lg:grid-cols-3 lg:py-28">
         {servicesData.map((service) => (
           <motion.div
             layoutId={`service-${service.title}-${id}`}
             key={`service-${service.title}-${id}`}
             onClick={() => setActive(service)}
-            className=" cursor-pointer flex-col items-center justify-between rounded-xl border-2 p-4 duration-200 hover:border-primary hover:bg-neutral-50 dark:hover:bg-neutral-800 md:flex-row"
+            className=" cursor-pointer flex-col items-center justify-between rounded-xl border-2 p-4 duration-200 hover:border-primary hover:bg-neutral-50 dark:hover:bg-dark md:flex-row"
           >
             <div className="">
               <motion.div

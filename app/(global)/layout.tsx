@@ -4,8 +4,10 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Inter } from "next/font/google";
+import { Providers, ReactQueryProvider } from "../providers";
 import "node_modules/react-modal-video/css/modal-video.css";
-import "../styles/index.css";
+import "../../styles/index.css";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,15 +25,27 @@ export default function RootLayout({
       <head />
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-          <ScrollToTop />
-        </Providers>
+        <Toaster
+          duration={2000}
+          position="bottom-center"
+          toastOptions={{
+            classNames: {
+              success: "bg-green-500 text-white border-green-800",
+              error: "bg-red-500 text-white border-red-800",
+              warning: "bg-yellow-500 text-white border-yellow-800",
+              info: "bg-primary text-white border-primary",
+            },
+          }}
+        />
+        <ReactQueryProvider>
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+            <ScrollToTop />
+          </Providers>
+        </ReactQueryProvider>
       </body>
     </html>
   );
 }
-
-import { Providers } from "./providers";

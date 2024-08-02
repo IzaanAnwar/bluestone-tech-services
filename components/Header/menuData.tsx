@@ -33,4 +33,27 @@ const menuData: Menu[] = [
     newTab: false,
   },
 ];
-export default menuData;
+
+const adminMenuData: Menu[] = [
+  {
+    id: 1,
+    title: "Dashboard",
+    path: "/admin/dashboard",
+    newTab: false,
+  },
+  {
+    id: 2,
+    title: "Jobs",
+    path: "/admin/jobs",
+    newTab: false,
+  },
+
+  {
+    id: 3,
+    title: "Send",
+    path: "/admin/send-email",
+    newTab: false,
+  },
+];
+
+export { adminMenuData, menuData };

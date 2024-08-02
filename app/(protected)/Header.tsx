@@ -1,10 +1,9 @@
 "use client";
-import Image from "next/image";
+import { adminMenuData } from "@/components/Header/menuData";
+import ThemeToggler from "@/components/Header/ThemeToggler";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SVGAttributes, useEffect, useState } from "react";
-import ThemeToggler from "./ThemeToggler";
-import { menuData } from "./menuData";
 
 const Header = () => {
   // Navbar toggle
@@ -37,7 +36,6 @@ const Header = () => {
   };
 
   const usePathName = usePathname();
-  console.log({ sticky });
 
   return (
     <>
@@ -93,7 +91,7 @@ const Header = () => {
                   }`}
                 >
                   <ul className="block lg:flex lg:space-x-12">
-                    {menuData.map((menuItem, index) => (
+                    {adminMenuData.map((menuItem, index) => (
                       <li key={index} className="group relative">
                         {menuItem.path ? (
                           <Link

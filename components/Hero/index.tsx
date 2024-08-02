@@ -64,9 +64,9 @@ const Hero = () => {
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
           <HoverBorderGradient
-            containerClassName="rounded-xl"
+            containerClassName="rounded-md"
             as="div"
-            className="inline-flex animate-shimmer items-center justify-center border  bg-slate-400 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)]  bg-[length:200%_100%] px-6 py-2 font-medium text-white transition-colors focus:outline-none    dark:border-slate-800"
+            className="inline-flex animate-shimmer items-center justify-center rounded-md border  bg-slate-400 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)]  bg-[length:200%_100%] px-6 py-2 font-medium text-white transition-colors focus:outline-none    dark:border-slate-800"
           >
             <Link href="/contact" className="h-full w-full">
               Book A Meeting

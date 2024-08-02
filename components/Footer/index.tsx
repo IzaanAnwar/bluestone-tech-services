@@ -17,9 +17,18 @@ const Footer = () => {
                 <Link href="/" className="mb-8 inline-block">
                   <BlueStoneLogo className="w-full" fill="currentColor" />
                 </Link>
-                <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
+                <p className="mb-4 text-base leading-relaxed text-body-color dark:text-body-color-dark">
                   Transforming Complex Challenges into Seamless Solutions.
                 </p>
+                <div className="mb-2 space-y-2">
+                  <p className=" text-base leading-relaxed text-body-color dark:text-body-color-dark">
+                    707A, 7th Floor, Skylark BLDG-60, Nehru Place, New Delhi,
+                    South Delhi- 110019, Delhi
+                  </p>
+                  <p className=" text-base leading-relaxed text-body-color dark:text-body-color-dark">
+                    Phone: 011-42475728
+                  </p>
+                </div>
                 <div className="flex items-center">
                   <a
                     href="/"
@@ -104,6 +113,14 @@ const Footer = () => {
                       About
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="/#"
+                      className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                    >
+                      Careers
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -153,7 +170,7 @@ const Footer = () => {
                       href="/contact"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      Open Support Ticket
+                      Contact us
                     </a>
                   </li>
                   <li>
@@ -178,11 +195,18 @@ const Footer = () => {
           </div>
 
           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>
-          <div className="py-8">
+          <div className="flex items-center justify-between py-8">
             <p className="text-center text-base text-body-color dark:text-white">
-              Crafted by{" "}
-              <a href="https://izaan.vercel.app" rel="nofollow noopener">
-                Izaan
+              © 2024 Bluestone Tech Services Pvt. Ltd. All rights reserved.
+            </p>
+            <p className="text-center text-base text-body-color dark:text-white">
+              Contact{" "}
+              <a
+                href="https://izaan.vercel.app"
+                rel="nofollow noopener"
+                className="text-primary"
+              >
+                Developer
               </a>
             </p>
           </div>

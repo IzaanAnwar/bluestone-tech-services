@@ -5,9 +5,34 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Blog Page for Startup Nextjs Template",
-  // other metadata
+  title: "Blog Details Page | Bluestone Tech Services",
+  description: "This is Blog Details Page for Bluestone Tech Services",
+  keywords: [
+    "Bluestone Tech Services",
+    "IT Consulting Company",
+    "Software Development",
+    "Networking",
+    "Data Center",
+    "Voice and Video",
+    "Wireless Solutions",
+    "High Performance Computing",
+    "DPU-GPU",
+    "VDI",
+    "Wi-Fi",
+    "WI Mesh",
+    "Converged Networks",
+    "Service Provider",
+    "Servers",
+    "Cloud Computing",
+    "Virtualization",
+    "Security",
+    "Data Protection",
+    "Unified Communication",
+    "Custom Software Development",
+  ],
+
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
 };
 
 const Blog = () => {
@@ -15,7 +40,7 @@ const Blog = () => {
     <>
       <Breadcrumb
         pageName="Blog Grid"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero."
+        description="Stay updated with the latest insights and advancements in technology. Explore articles on network solutions, data center efficiency, digital security, unified communication, high-performance computing, and custom software development."
       />
 
       <section className="pb-[120px] pt-[120px]">

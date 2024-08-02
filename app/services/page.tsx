@@ -10,6 +10,32 @@ export const metadata: Metadata = {
   title: "Services of Bluestone Tech Services Pvt Ltd.",
   description:
     "Bluestone Tech Services Pvt Ltd. is a leading IT services provider who offers a wide range of IT solutions.",
+  keywords: [
+    "Bluestone Tech Services",
+    "IT Consulting Company",
+    "Software Development",
+    "Networking",
+    "Data Center",
+    "Voice and Video",
+    "Wireless Solutions",
+    "High Performance Computing",
+    "DPU-GPU",
+    "VDI",
+    "Wi-Fi",
+    "WI Mesh",
+    "Converged Networks",
+    "Service Provider",
+    "Servers",
+    "Cloud Computing",
+    "Virtualization",
+    "Security",
+    "Data Protection",
+    "Unified Communication",
+    "Custom Software Development",
+  ],
+
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
 };
 
 const AboutPage = () => {

@@ -148,7 +148,7 @@ const Header = () => {
 
 export default Header;
 
-function BlueStoneLogo(props: SVGAttributes<SVGAElement>) {
+export function BlueStoneLogo(props: SVGAttributes<SVGAElement>) {
   return (
     <svg
       viewBox="287.967 108.966 90.953 12.875"

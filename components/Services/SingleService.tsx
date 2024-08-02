@@ -91,17 +91,16 @@ export function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="flex h-full w-full max-w-[500px]  flex-col overflow-hidden  bg-white p-4 dark:bg-neutral-900 sm:rounded-md md:h-fit md:max-h-[90%]"
+              className=" flex h-full w-full max-w-[70vw]  flex-col overflow-x-hidden overflow-y-scroll  bg-white p-4 dark:bg-neutral-900 sm:rounded-md md:h-fit md:max-h-[80%]"
             >
-              <motion.div
-                layoutId={`image-${active.title}-${id}`}
-                className="ml-4 flex h-[70px] w-[70px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary"
-              >
-                {active.icon}
-              </motion.div>
-
               <div>
                 <div className="p-4">
+                  <motion.div
+                    layoutId={`image-${active.title}-${id}`}
+                    className="ml-4  hidden h-[70px] w-[70px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary"
+                  >
+                    {active.icon}
+                  </motion.div>
                   <div className="">
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
@@ -115,6 +114,42 @@ export function ExpandableCardDemo() {
                     >
                       {active.paragraph}
                     </motion.p>
+                    <div className="grid grid-cols-1 gap-x-8 gap-y-14 py-16 max-xl:grid-cols-3 md:grid-cols-2 md:py-20 lg:py-28">
+                      {active.subServices.map((subService) => (
+                        <motion.div
+                          key={subService.id}
+                          layoutId={`card-${subService.title}-${subService.id}`}
+                          ref={ref}
+                          className="flex h-full w-full max-w-[500px] flex-col overflow-hidden border  bg-white p-4 dark:bg-neutral-900 sm:rounded-md md:h-fit md:max-h-[90%]"
+                        >
+                          <motion.div
+                            layoutId={`image-${subService.title}-${subService.id}`}
+                            className="ml-4 flex h-[70px] w-[70px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary"
+                          >
+                            {subService.icon}
+                          </motion.div>
+
+                          <div>
+                            <div className="p-4">
+                              <div className="">
+                                <motion.h3
+                                  layoutId={`title-${subService.title}-${subService.id}`}
+                                  className="mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl"
+                                >
+                                  {subService.title}
+                                </motion.h3>
+                                <motion.p
+                                  layoutId={`paragraph-${subService.paragraph}-${subService.id}`}
+                                  className="pr-[10px] text-base font-medium leading-relaxed text-body-color"
+                                >
+                                  {subService.paragraph}
+                                </motion.p>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

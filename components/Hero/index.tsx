@@ -56,7 +56,7 @@ const Hero = () => {
       >
         <div className="text-center  dark:text-white ">
           <h1 className="mx-auto mb-5 text-3xl font-bold leading-tight  sm:text-4xl sm:leading-tight md:max-w-[75%] md:text-5xl md:leading-tight lg:max-w-[60%]">
-            Transforming Businesses through End-to-End IT Solutions
+            Transforming Complex Challenges into Seamless Solutions
           </h1>
           <div className=" pb-8 text-base font-extralight dark:text-neutral-200 md:text-4xl">
             Bluestone Tech Services Pvt Ltd.
@@ -66,7 +66,7 @@ const Hero = () => {
           <HoverBorderGradient
             containerClassName="rounded-xl"
             as="div"
-            className="animate-shimmer inline-flex items-center justify-center border  bg-slate-400 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)]  bg-[length:200%_100%] px-6 py-2 font-medium text-white transition-colors focus:outline-none    dark:border-slate-800"
+            className="inline-flex animate-shimmer items-center justify-center border  bg-slate-400 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)]  bg-[length:200%_100%] px-6 py-2 font-medium text-white transition-colors focus:outline-none    dark:border-slate-800"
           >
             <Link href="/contact" className="h-full w-full">
               Book A Meeting

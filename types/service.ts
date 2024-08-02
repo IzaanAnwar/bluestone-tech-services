@@ -3,4 +3,12 @@ export type Service = {
   icon: JSX.Element;
   title: string;
   paragraph: string;
+  subServices: SubService[];
+};
+
+type SubService = {
+  id: number;
+  icon: JSX.Element;
+  title: string;
+  paragraph: string;
 };

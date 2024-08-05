@@ -4,11 +4,12 @@ import { Job } from "@/types/jobs";
 import { JobCard } from "./JobCard";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-
-export const dynamic = "force-dynamic";
+import { use, useEffect, useState } from "react";
+import { User } from "@/lib/getuser";
+import { useRouter } from "next/navigation";
 
 const DashboardPage = () => {
+  const router = useRouter();
   const [isRefetch, setIsRefetch] = useState(false);
   const jobsQuery = useQuery({
     queryKey: ["jobs"],
@@ -21,6 +22,23 @@ const DashboardPage = () => {
       throw new Error(await response.json());
     },
   });
+
+  useEffect(() => {
+    async function getUser() {
+      const response = await fetch("/api/auth/getuser");
+      if (response.status === 200) {
+        const data = await response.json();
+        if (!data || !data.userId) {
+          router.push("/signin");
+        }
+        return data as User;
+      } else {
+        router.push("/signin");
+      }
+    }
+    getUser();
+  }, [router]);
+
   useEffect(() => {
     if (isRefetch) {
       jobsQuery.refetch();

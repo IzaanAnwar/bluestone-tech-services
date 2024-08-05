@@ -149,10 +149,10 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="/"
+                      href="/signin"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      Refund Policy
+                      Manage
                     </a>
                   </li>
                 </ul>

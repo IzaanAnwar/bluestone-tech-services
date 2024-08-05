@@ -47,13 +47,6 @@ const adminMenuData: Menu[] = [
     path: "/admin/jobs",
     newTab: false,
   },
-
-  {
-    id: 3,
-    title: "Send",
-    path: "/admin/send-email",
-    newTab: false,
-  },
 ];
 
 export { adminMenuData, menuData };

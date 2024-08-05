@@ -2,8 +2,14 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import { Query } from "@/types/quries";
 import QueryList from "./QueryList";
 import { Tabs } from "@/components/ui/tabs";
+import { getUser } from "@/lib/getuser";
+import { redirect } from "next/navigation";
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
+  const user = await getUser();
+  if (!user) {
+    redirect("/signin");
+  }
   const tabs = [
     {
       title: "Latest",

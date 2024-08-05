@@ -39,7 +39,7 @@ export default function LoginForm() {
       toast.error(error.message);
     },
     onSuccess: () => {
-      router.push("/dashboard");
+      router.push("/admin/dashboard");
     },
   });
   return (
@@ -107,14 +107,6 @@ export default function LoginForm() {
             </div>
             Keep me signed in
           </label>
-        </div>
-        <div>
-          <a
-            href="#0"
-            className="text-sm font-medium text-primary hover:underline"
-          >
-            Forgot Password?
-          </a>
         </div>
       </div>
       <div className="mb-6">

@@ -6,6 +6,8 @@ import { Toaster } from "sonner";
 import { Metadata } from "next";
 import { Providers, ReactQueryProvider } from "@/app/providers";
 import Header from "./Header";
+import { getUser } from "@/lib/getuser";
+import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,11 +41,15 @@ export const metadata: Metadata = {
 
   robots: "index, follow",
 };
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getUser();
+  if (!user) {
+    redirect("/signin");
+  }
   return (
     <html suppressHydrationWarning lang="en">
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>

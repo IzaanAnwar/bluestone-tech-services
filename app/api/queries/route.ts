@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import { queries } from "@/db/schema";
+import { getUser } from "@/lib/getuser";
 import { desc, eq } from "drizzle-orm";
 import { NextRequest } from "next/server";
 import { z } from "zod";
@@ -11,6 +12,12 @@ const sendQuerySchema = z.object({
 });
 export const POST = async (req: NextRequest) => {
   try {
+    const user = await getUser();
+
+    if (!user) {
+      return Response.json({ message: "User not logged in" }, { status: 401 });
+    }
+
     const { email, message, name } = sendQuerySchema.parse(await req.json());
     await db.insert(queries).values({
       query: message,

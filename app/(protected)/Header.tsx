@@ -1,11 +1,49 @@
 "use client";
 import { adminMenuData } from "@/components/Header/menuData";
 import ThemeToggler from "@/components/Header/ThemeToggler";
+import { User } from "@/lib/getuser";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SVGAttributes, useEffect, useState } from "react";
 
 const Header = () => {
+  const router = useRouter();
+  const useLogout = useMutation({
+    mutationKey: ["logout"],
+    mutationFn: async () => {
+      const response = await fetch("/api/auth/signout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+    },
+    onSuccess: () => {
+      router.push("/signin");
+    },
+  });
+
+  const userQuery = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const response = await fetch("/api/auth/getuser");
+      if (response.status === 200) {
+        const data = await response.json();
+        return data as User;
+      } else {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+    },
+  });
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
@@ -120,21 +158,25 @@ const Header = () => {
                 </nav>
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
-                {/* <Link
-                  href="/signin"
-                  className="hidden px-7 py-3 text-base font-medium text-dark hover:opacity-70 dark:text-white md:block"
-                >
-                  Sign In
-                </Link>
-                <Link
+                {/*<Link
                   href="/signup"
                   className="ease-in-up hidden rounded-sm bg-primary px-8 py-3 text-base font-medium text-white shadow-btn transition duration-300 hover:bg-opacity-90 hover:shadow-btn-hover md:block md:px-9 lg:px-6 xl:px-9"
-                >
+                  >
                   Sign Up
-                </Link> */}
+                  </Link> */}
                 <div>
                   <ThemeToggler />
                 </div>
+                {usePathName.includes("/admin") && userQuery.data?.userId && (
+                  <button
+                    type="button"
+                    className="  rounded-xl bg-primary px-7 py-3 text-base font-medium text-white hover:opacity-70 md:block"
+                    onClick={() => useLogout.mutate()}
+                    disabled={useLogout.isPending}
+                  >
+                    {useLogout.isPending ? "Logging out..." : "Logout"}
+                  </button>
+                )}
               </div>
             </div>
           </div>

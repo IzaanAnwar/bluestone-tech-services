@@ -21,8 +21,8 @@ export const queries = mysqlTable("queries", {
     length: 10,
     enum: ["unseen", "seen", "replied"],
   })
-    .notNull()
-    .default("unseen"),
+    .default("unseen")
+    .notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

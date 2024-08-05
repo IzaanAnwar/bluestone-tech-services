@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import { queries, sentEmails } from "@/db/schema";
+import { getUser } from "@/lib/getuser";
 import { sendMail } from "@/lib/sendMail";
 import { eq } from "drizzle-orm";
 import { NextRequest } from "next/server";
@@ -7,6 +8,12 @@ import { z } from "zod";
 
 export const POST = async (req: NextRequest) => {
   try {
+    const user = await getUser();
+
+    if (!user) {
+      return Response.json({ message: "User not logged in" }, { status: 401 });
+    }
+
     const body = await req.json();
 
     const { message, queryId } = z
@@ -31,6 +38,7 @@ export const POST = async (req: NextRequest) => {
     await db
       .update(queries)
       .set({
+        // @ts-ignore
         status: "replied",
         updatedAt: new Date(),
       })

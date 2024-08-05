@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { Metadata } from "next";
 import LoginForm from "./LoginForm";
+import { getUser } from "@/lib/getuser";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign In Page | Free Next.js Template for Startup and SaaS",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const SigninPage = () => {
+const SigninPage = async () => {
+  const user = await getUser();
+  if (user) {
+    redirect("/admin/dashboard");
+  }
   return (
     <>
       <section className="relative z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">

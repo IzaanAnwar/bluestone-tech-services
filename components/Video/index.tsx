@@ -14,7 +14,7 @@ const Video = () => {
       <div className="container">
         <SectionTitle
           title="We are ready to help"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          paragraph="At Bluestoe Tech Services, we pride ourselves on delivering top-notch, customized solutions that stand out for their quality and efficiency."
           center
           mb="80px"
         />

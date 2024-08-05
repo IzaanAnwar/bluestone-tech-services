@@ -86,12 +86,12 @@ const QueryPage = ({ params }: { params: { queryId: string } }) => {
         {openedQuery?.data?.status === "replied" && (
           <div className="group block">
             <p className="mb-8 border-b border-body-color border-opacity-10 pb-8 text-base leading-relaxed text-body-color duration-200 group-hover:text-black dark:border-white dark:border-opacity-10 dark:text-white dark:group-hover:text-zinc-400">
-              All Replies
+              Your Sent Emails
             </p>
             {openedQuery.data.replies?.map((reply) => (
               <div
                 key={reply.id}
-                className="w-full rounded-xl shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] duration-500 "
+                className="my-2 w-full rounded-xl shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] duration-500 "
               >
                 <div
                   className="wow fadeInUp rounded-xl  bg-white p-8  dark:bg-dark  lg:px-5 xl:px-8"
@@ -102,7 +102,7 @@ const QueryPage = ({ params }: { params: { queryId: string } }) => {
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="w-full">
-                      <h3 className="mb-1 text-lg font-semibold text-dark dark:text-white lg:text-base xl:text-lg">
+                      <h3 className="mb-1  font-semibold text-dark dark:text-white ">
                         {reply.to}
                       </h3>
                       <p className="text-sm text-body-color">

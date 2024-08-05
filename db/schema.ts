@@ -41,13 +41,14 @@ export const jobListings = mysqlTable("job_listings", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   title: varchar("title", { length: 255 }).notNull(),
-  description: varchar("description", { length: 255 }).notNull(),
+  description: text("description").notNull(),
   jobType: varchar("job_type", {
     length: 26,
     enum: ["full-time", "part-time", "internship", "contract"],
   })
     .notNull()
     .default("full-time"),
+  contact: varchar("contact", { length: 255 }).notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

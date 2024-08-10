@@ -4,6 +4,7 @@ import QueryList from "./QueryList";
 import { Tabs } from "@/components/ui/tabs";
 import { getUser } from "@/lib/getuser";
 import { redirect } from "next/navigation";
+import { ExportSheetButton } from "./ExportSheetBtn";
 
 const DashboardPage = async () => {
   const user = await getUser();
@@ -36,6 +37,7 @@ const DashboardPage = async () => {
     <>
       <Breadcrumb pageName="Dashboard" description="" />
       <main className="container mx-auto space-y-10 overflow-hidden pb-16 pt-16 md:pb-20 lg:pb-28">
+        <ExportSheetButton />
         <Tabs tabs={tabs} />
       </main>
     </>

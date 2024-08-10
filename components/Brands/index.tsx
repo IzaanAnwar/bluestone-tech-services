@@ -12,13 +12,14 @@ const Brands = () => {
             className="wow fadeInUp flex max-w-full flex-wrap items-center justify-center overflow-hidden rounded-sm bg-gray-light/10 px-8 py-8 dark:bg-gray-dark/10 sm:px-10 md:px-[50px] md:py-[40px] xl:p-[50px] 2xl:px-[70px] 2xl:py-[60px]"
             data-wow-delay=".1s"
           >
-            <InfiniteMovingCards
+            {/* <InfiniteMovingCards
               items={brandsData}
               direction="right"
               speed="normal"
-            />
-
-            {/* Our Partners Coming Soon */}
+            /> */}
+            <div className="w-full rounded-xl   p-4 text-center">
+              Our Partners Coming Soon
+            </div>
           </div>
         </div>
       </div>

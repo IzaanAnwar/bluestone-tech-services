@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { queries } from "@/db/schema";
 import { getUser } from "@/lib/getuser";
+import { sendMail } from "@/lib/sendMail";
 import { desc, eq } from "drizzle-orm";
 import { NextRequest } from "next/server";
 import { z } from "zod";
@@ -12,13 +13,19 @@ const sendQuerySchema = z.object({
 });
 export const POST = async (req: NextRequest) => {
   try {
-    const user = await getUser();
-
-    if (!user) {
-      return Response.json({ message: "User not logged in" }, { status: 401 });
-    }
-
     const { email, message, name } = sendQuerySchema.parse(await req.json());
+
+    await sendMail({
+      to: email,
+      body: `<p style="font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 24px;">
+      Hello <strong>${name},</strong><br>
+      <br>
+      <p style="font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 24px;">
+    Thanks for contacting us. We will get back to you as soon as possible.
+      </p>
+      </p>`,
+    });
+
     await db.insert(queries).values({
       query: message,
       email,

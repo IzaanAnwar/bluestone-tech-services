@@ -1,8 +1,6 @@
-import { db } from "@/db";
-import { queries } from "@/db/schema";
 import { getUser } from "@/lib/getuser";
 import { sendMail } from "@/lib/sendMail";
-import { desc, eq } from "drizzle-orm";
+import { db } from "@/prisma";
 import { NextRequest } from "next/server";
 import { z } from "zod";
 
@@ -15,27 +13,45 @@ export const POST = async (req: NextRequest) => {
   try {
     const { email, message, name } = sendQuerySchema.parse(await req.json());
 
-    await sendMail({
-      to: email,
-      body: `<p style="font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 24px;">
+    const mailsToSend = [
+      sendMail({
+        to: email,
+        body: `<p style="font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 24px;">
       Hello <strong>${name},</strong><br>
       <br>
       <p style="font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 24px;">
     Thanks for contacting us. We will get back to you as soon as possible.
       </p>
       </p>`,
-    });
+      }),
+      sendMail({
+        subject: "New Support Request",
+        to: "sales@blustonetech.com",
+        body: `<p style="font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 24px;">
+      Sender: <strong>${name},</strong><br>
+      <br>
+      <p style="font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 24px;">Email: ${email}</p>
+      <p style="font-size: 16px; font-family: Arial, Helvetica, sans-serif; color: #000000; line-height: 24px;">
+    ${message}  
+      </p>
+      </p>`,
+      }),
+    ];
 
-    await db.insert(queries).values({
-      query: message,
-      email,
-      username: name,
+    await Promise.all(mailsToSend);
+    await db.query.create({
+      data: {
+        query: message,
+        email,
+        username: name,
+      },
     });
     return Response.json(
       { message: "Query sent successfully" },
       { status: 200 },
     );
   } catch (error) {
+    console.error({ error });
     if (error instanceof z.ZodError) {
       const flattenedError = error.flatten();
       return Response.json(flattenedError, { status: 400 });
@@ -65,20 +81,27 @@ export const GET = async (req: NextRequest) => {
     const queryId = await req.nextUrl.searchParams.get("queryId");
 
     if (queryId) {
-      const data = await db.query.queries.findFirst({
-        where: eq(queries.id, queryId),
+      const data = await db.query.findFirst({
+        where: { id: queryId },
+        include: {
+          replies: {},
+        },
       });
       return Response.json(data, { status: 200 });
     }
     if (params === "all") {
-      const data = await db.select().from(queries);
+      const data = await db.query.findMany();
       return Response.json(data, { status: 200 });
     }
-    const data = await db
-      .select()
-      .from(queries)
-      .where(eq(queries.status, params))
-      .orderBy(desc(queries.updatedAt));
+    const data = await db.query.findMany({
+      where: {
+        status: params,
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+
     return Response.json(data, { status: 200 });
   } catch (error) {
     return Response.json(

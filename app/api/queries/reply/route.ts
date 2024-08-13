@@ -1,8 +1,6 @@
-import { db } from "@/db";
-import { queries, sentEmails } from "@/db/schema";
 import { getUser } from "@/lib/getuser";
 import { sendMail } from "@/lib/sendMail";
-import { eq } from "drizzle-orm";
+import { db } from "@/prisma";
 import { NextRequest } from "next/server";
 import { z } from "zod";
 
@@ -22,31 +20,32 @@ export const POST = async (req: NextRequest) => {
         queryId: z.string(),
       })
       .parse(body);
-    const requestedQuery = await db.query.queries.findFirst({
-      where: eq(queries.id, queryId),
+    const requestedQuery = await db.query.findFirstOrThrow({
+      where: { id: queryId },
     });
     if (!requestedQuery) {
       return Response.json({ message: "Query not found" }, { status: 404 });
     }
     const response = await sendMail({
-      body: `<p>Hi ${message}</p>`,
-      proffName: "This is American Express",
+      body: `<p>${message}</p>`,
       to: requestedQuery.email,
     });
     console.log({ response });
 
-    await db
-      .update(queries)
-      .set({
-        // @ts-ignore
+    await db.query.update({
+      where: { id: queryId },
+      data: {
         status: "replied",
         updatedAt: new Date(),
-      })
-      .where(eq(queries.id, queryId));
+      },
+    });
 
-    await db.insert(sentEmails).values({
-      to: requestedQuery.email,
-      message: message,
+    await db.sentEmail.create({
+      data: {
+        to: requestedQuery.email,
+        message: message,
+        queryId: requestedQuery.id,
+      },
     });
     return Response.json(
       { message: "Message sent successfully" },
@@ -72,10 +71,10 @@ export const GET = async (req: NextRequest) => {
 
     console.log({ queryId });
 
-    const requestedQuery = await db.query.queries.findFirst({
-      where: eq(queries.id, queryId),
-      with: {
-        replies: true,
+    const requestedQuery = await db.query.findFirstOrThrow({
+      where: { id: queryId },
+      include: {
+        replies: {},
       },
     });
 

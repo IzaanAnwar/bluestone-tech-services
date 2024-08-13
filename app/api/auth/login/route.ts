@@ -1,10 +1,8 @@
 import { compare, genSalt, hash } from "bcryptjs";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
-import { db } from "@/db";
-import { and, eq } from "drizzle-orm";
-import { users } from "@/db/schema";
 import { cookies } from "next/headers";
+import { db } from "@/prisma";
 
 const signinSchema = z.object({
   email: z.string().email(),
@@ -15,8 +13,8 @@ export const POST = async (req: Request) => {
   try {
     const { email, password } = signinSchema.parse(await req.json());
 
-    const user = await db.query.users.findFirst({
-      where: eq(users.email, email),
+    const user = await db.user.findFirst({
+      where: { email: email },
     });
 
     if (!user) {

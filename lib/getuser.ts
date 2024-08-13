@@ -1,8 +1,5 @@
 "use server";
 import jwt from "jsonwebtoken";
-import { db } from "@/db";
-import { and, eq } from "drizzle-orm";
-import { users } from "@/db/schema";
 import { cookies } from "next/headers";
 
 export type User = {

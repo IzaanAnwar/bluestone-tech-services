@@ -1,18 +1,12 @@
 import type { Config } from "drizzle-kit";
-import { config } from "dotenv";
-config();
-
-const url = process.env.DATABASE_URL;
-
-if (!url) {
-  throw new Error("Enviroment variables missing");
-}
 
 export default {
   schema: "./db/schema.ts",
   out: "./db/migrations",
-  dialect: "mysql",
+  dialect: "sqlite",
   dbCredentials: {
-    url: url,
+    url: "./bluestone.db",
   },
+  verbose: true,
+  strict: true,
 } satisfies Config;

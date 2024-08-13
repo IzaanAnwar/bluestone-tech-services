@@ -19,6 +19,8 @@ const QueryPage = ({ params }: { params: { queryId: string } }) => {
         `/api/queries/reply?queryId=${params.queryId}`,
       );
       const data = await response.json();
+      console.log({ data });
+
       return data as Query;
     },
   });
@@ -36,6 +38,7 @@ const QueryPage = ({ params }: { params: { queryId: string } }) => {
     },
     onSuccess: (data) => {
       toast.success(data?.message ?? "Message sent successfully");
+      openedQuery.refetch();
     },
     onError: (error) => {
       toast.error(error?.message ?? "Something went wrong");

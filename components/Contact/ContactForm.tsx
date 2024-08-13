@@ -28,6 +28,10 @@ export default function ContactForm() {
         },
         body: JSON.stringify({ name, email, message }),
       });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
       return response.json();
     },
     onSuccess: (data) => {

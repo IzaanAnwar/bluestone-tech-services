@@ -1,7 +1,5 @@
-import { db } from "@/db";
-import { jobListings } from "@/db/schema";
 import { getUser } from "@/lib/getuser";
-import { eq } from "drizzle-orm";
+import { db } from "@/prisma";
 import { NextRequest } from "next/server";
 import { z } from "zod";
 
@@ -23,11 +21,8 @@ export const POST = async (request: NextRequest) => {
     console.log({ body });
 
     const { title, description, jobType, contact } = jobSchema.parse(body);
-    await db.insert(jobListings).values({
-      title,
-      description,
-      contact,
-      ...(jobType && { jobType }),
+    await db.jobListing.create({
+      data: { title, description, contact, ...(jobType && { jobType }) },
     });
     return Response.json(
       { message: "Job added successfully" },
@@ -52,13 +47,12 @@ export const GET = async (request: NextRequest) => {
   try {
     const jobId = request.nextUrl.searchParams.get("jobId");
     if (jobId) {
-      const [job] = await db
-        .select()
-        .from(jobListings)
-        .where(eq(jobListings.id, jobId));
+      const job = await db.jobListing.findFirstOrThrow({
+        where: { id: jobId },
+      });
       return Response.json(job, { status: 200 });
     }
-    const jobs = await db.select().from(jobListings);
+    const jobs = await db.jobListing.findMany();
     return Response.json(jobs, { status: 200 });
   } catch (error) {
     console.log(error);
@@ -90,15 +84,15 @@ export const PUT = async (request: NextRequest) => {
     const { id, title, description, jobType, contact } = updateJobSchema.parse(
       await request.json(),
     );
-    await db
-      .update(jobListings)
-      .set({
+    await db.jobListing.update({
+      where: { id },
+      data: {
         ...(title && { title }),
         ...(description && { description }),
         ...(contact && { contact }),
         ...(jobType && { jobType }),
-      })
-      .where(eq(jobListings.id, id));
+      },
+    });
     return Response.json(
       { message: "Job updated successfully" },
       { status: 200 },
@@ -131,7 +125,7 @@ export const DELETE = async (request: NextRequest) => {
       .uuid()
       .parse(request.nextUrl.searchParams.get("jobId"));
     if (jobId) {
-      await db.delete(jobListings).where(eq(jobListings.id, jobId));
+      await db.jobListing.delete({ where: { id: jobId } });
       return Response.json(
         { message: "Job deleted successfully" },
         { status: 200 },

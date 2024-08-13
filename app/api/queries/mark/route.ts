@@ -1,7 +1,5 @@
-import { db } from "@/db/";
-import { queries } from "@/db/schema";
 import { getUser } from "@/lib/getuser";
-import { eq } from "drizzle-orm";
+import { db } from "@/prisma";
 import { revalidatePath } from "next/cache";
 import { NextRequest } from "next/server";
 import { z } from "zod";
@@ -19,8 +17,10 @@ export const POST = async (req: NextRequest) => {
       return Response.json({ message: "No id provided" }, { status: 400 });
     }
     const { id } = z.object({ id: z.string().uuid() }).parse(body);
-    // @ts-ignore
-    await db.update(queries).set({ status: "seen" }).where(eq(queries.id, id));
+    await db.query.update({
+      where: { id },
+      data: { status: "seen" },
+    });
     revalidatePath("/admin/dashboard");
     return Response.json(
       { message: "Query marked as read successfully" },

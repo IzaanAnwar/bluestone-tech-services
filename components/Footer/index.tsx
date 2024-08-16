@@ -195,18 +195,18 @@ const Footer = () => {
           </div>
 
           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>
-          <div className="flex items-center justify-between py-8">
+          <div className="items-center justify-between py-8 lg:flex">
             <p className="text-center text-base text-body-color dark:text-white">
               © 2024 Bluestone Tech Services Pvt. Ltd. All rights reserved.
             </p>
             <p className="text-center text-base text-body-color dark:text-white">
-              Contact{" "}
+              Developed by{" "}
               <a
                 href="https://izaan.vercel.app"
                 rel="nofollow noopener"
                 className="text-primary"
               >
-                Developer
+                Izaan
               </a>
             </p>
           </div>

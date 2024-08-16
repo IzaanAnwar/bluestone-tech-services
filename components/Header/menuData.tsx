@@ -32,6 +32,25 @@ const menuData: Menu[] = [
 
     newTab: false,
   },
+  {
+    id: 4,
+    title: "Login",
+    newTab: false,
+    submenu: [
+      {
+        id: 101,
+        title: "CRM Portal",
+        path: "https://biziverse.com/index.html",
+        newTab: true,
+      },
+      {
+        id: 102,
+        title: "Web Mail",
+        path: "https://www.zoho.com/mail/login.html",
+        newTab: true,
+      },
+    ],
+  },
 ];
 
 const adminMenuData: Menu[] = [

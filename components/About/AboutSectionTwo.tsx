@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const World = dynamic(() => import("../ui/globe").then((m) => m.World), {
   ssr: false,
@@ -424,9 +425,15 @@ const AboutSectionTwo = () => {
   return (
     <section className="py-16 md:py-20 lg:py-28">
       <div className="container">
-        <div className="-mx-4 flex flex-wrap items-center ">
+        <div className="-mx-4 flex flex-wrap items-center space-y-12 lg:space-y-0 ">
           <div className=" w-full  px-4 lg:w-1/2">
-            <GlobeTab />
+            <Image
+              src="/about.svg"
+              alt="about"
+              width={500}
+              height={500}
+              className="h-full w-full object-cover"
+            />
           </div>
           <div className="h-fit w-full  px-4  lg:w-1/2">
             <div className="wow fadeInUp max-w-[470px]" data-wow-delay=".2s">

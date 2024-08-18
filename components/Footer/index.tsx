@@ -25,9 +25,14 @@ const Footer = () => {
                     707A, 7th Floor, Skylark BLDG-60, Nehru Place, New Delhi,
                     South Delhi- 110019, Delhi
                   </p>
-                  <p className=" text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                    Phone: 011-42475728
-                  </p>
+                  <div className="pb-2">
+                    <p className=" text-base leading-relaxed text-body-color dark:text-body-color-dark">
+                      Phone: 011-42475728, +91 62004 96955
+                    </p>
+                    <p className=" text-base leading-relaxed text-body-color dark:text-body-color-dark">
+                      Email: contactus@blustonetech.com
+                    </p>
+                  </div>
                 </div>
                 <div className="flex items-center">
                   <a
